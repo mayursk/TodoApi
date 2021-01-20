@@ -44,6 +44,20 @@ namespace TodoApi.Controllers
 
             return todoItem;
         }
+
+        /// GET: api/TodoItems
+        [HttpGet()]
+        public async Task<ActionResult<List<TodoItem>>> GetAll()
+        {
+            var todoItems = await _context.TodoItems.ToListAsync();
+
+            if (todoItems.Count==0)
+            {
+                return NotFound();
+            }
+
+            return todoItems;
+        }
     // PUT: api/TodoItems/5
 [HttpPut("{id}")]
 public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
